@@ -20,46 +20,39 @@ class MainActivity : AppCompatActivity() {
 
         // Start calculations when button is pressed
         sentSubmission.setOnClickListener {
-            calcMacros(fatW, carbW, proteinW)
+            val food = Food(fatW, carbW, proteinW)
+            calcMacros(food)
         }
     }
 
     /* Calculate macros */
-    private fun calcMacros(fatW: EditText, carbW: EditText, proteinW: EditText) {
-        // Create a food item
-        val food = Food()
+    private fun calcMacros(food: Food) {
+        // Creating references for the views
+        val kcalMacrosView: TextView = findViewById(R.id.kcalMacros)
+        val kcalTotalView: TextView = findViewById(R.id.kcalTotal)
+        val pctCarbsView: TextView = findViewById(R.id.pctCarbs)
+
+        // Creating internal variables
+        val kcalFat = food.calcCal(food.fat, 9)
+        val kcalCarb = food.calcCal(food.carb, 4)
+        val kcalProtein = food.calcCal(food.protein, 4)
+        val kcalTotal = kcalFat + kcalCarb + kcalProtein
+        val pctCarb = kcalCarb / kcalTotal * 100
 
         // Return energy information
-        val kcalFat: TextView = findViewById(R.id.kcalFat)
-        val kcalCarb: TextView = findViewById(R.id.kcalCarb)
-        val kcalProtein: TextView = findViewById(R.id.kcalProtein)
-        val kcalTotal: TextView = findViewById(R.id.kcalTotal)
-        val pctCarbs: TextView = findViewById(R.id.pctCarbs)
-        kcalFat.text = "(${food.calcCal(fatW, 9).roundToInt()} fat"
-        kcalCarb.text = "${food.calcCal(carbW, 4).roundToInt()} carbs"
-        kcalProtein.text = "${food.calcCal(proteinW, 4).roundToInt()} protein)"
-        kcalTotal.text = "${food.calcTotalCal(fatW, carbW, proteinW)} kcal total"
-        pctCarbs.text = "${food.pctCarbs(fatW, carbW, proteinW).roundToInt()} % from carbs"
+        kcalMacrosView.text = "($kcalFat fat, $kcalCarb carbs, $kcalProtein protein)"
+        kcalTotalView.text = "$kcalTotal kcal total"
+        pctCarbsView.text = "${pctCarb.roundToInt()} % from carbs"
     }
 }
 
 /* Food item with macronutrient information */
-class Food() {
-    fun calcCal(grams: EditText, multiplier: Int): Double {
-        val numGrams = grams.text.toString().toDouble()
-        return multiplier * numGrams
-    }
-    fun calcTotalCal(fatG: EditText, carbG: EditText, proteinG: EditText): Double {
-        val fat = fatG.text.toString().toDouble()
-        val carb = carbG.text.toString().toDouble()
-        val protein = proteinG.text.toString().toDouble()
-        return fat * 9 + (carb + protein) * 4
-    }
-    fun pctCarbs(fatG: EditText, carbG: EditText, proteinG: EditText): Double {
-        val fat = fatG.text.toString().toDouble()
-        val carb = carbG.text.toString().toDouble()
-        val protein = proteinG.text.toString().toDouble()
-        val totalEnergy = fat * 9 + (carb + protein) * 4
-        return carb * 4 / totalEnergy * 100
+class Food (fatW: EditText, carbW: EditText, proteinW: EditText) {
+    val fat = fatW.text.toString().toDouble()
+    val carb = carbW.text.toString().toDouble()
+    val protein = proteinW.text.toString().toDouble()
+
+    fun calcCal(grams: Double, multiplier: Int): Double {
+        return multiplier * grams
     }
 }
