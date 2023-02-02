@@ -17,15 +17,10 @@ class MainActivity : AppCompatActivity() {
         val fatW: EditText = findViewById(R.id.fatWeight)
         val carbW: EditText = findViewById(R.id.carbWeight)
         val proteinW: EditText = findViewById(R.id.proteinWeight)
-        val totalKcal: TextView = findViewById(R.id.kcalTotal)
 
         // Start calculations when button is pressed
         sentSubmission.setOnClickListener {
             calcMacros(fatW, carbW, proteinW)
-            /*
-            calcMacros(carbW, R.id.kcalCarb, 4)
-            calcMacros(proteinW, R.id.kcalProtein, 4)
-            */
         }
     }
 
@@ -39,10 +34,12 @@ class MainActivity : AppCompatActivity() {
         val kcalCarb: TextView = findViewById(R.id.kcalCarb)
         val kcalProtein: TextView = findViewById(R.id.kcalProtein)
         val kcalTotal: TextView = findViewById(R.id.kcalTotal)
+        val pctCarbs: TextView = findViewById(R.id.pctCarbs)
         kcalFat.text = "${food.calcCal(fatW, 9).roundToInt()} kcal fat"
         kcalCarb.text = "${food.calcCal(carbW, 4).roundToInt()} kcal carbs"
         kcalProtein.text = "${food.calcCal(proteinW, 4).roundToInt()} kcal protein"
         kcalTotal.text = "${food.calcTotalCal(fatW, carbW, proteinW)} kcal total"
+        pctCarbs.text = "${food.pctCarbs(fatW, carbW, proteinW).roundToInt()} % from carbs"
     }
 }
 
@@ -58,13 +55,11 @@ class Food() {
         val protein = proteinG.text.toString().toDouble()
         return fat * 9 + (carb + protein) * 4
     }
-    /*
     fun pctCarbs(fatG: EditText, carbG: EditText, proteinG: EditText): Double {
         val fat = fatG.text.toString().toDouble()
         val carb = carbG.text.toString().toDouble()
         val protein = proteinG.text.toString().toDouble()
         val totalEnergy = fat * 9 + (carb + protein) * 4
-        return carb * 4 / totalEnergy
+        return carb * 4 / totalEnergy * 100
     }
-     */
 }
