@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     /* Calculate macros */
     private fun calcMacros(food: Food) {
-        // Create a food item
-
         // Return energy information
         val kcalFat: TextView = findViewById(R.id.kcalFat)
         val kcalCarb: TextView = findViewById(R.id.kcalCarb)
@@ -38,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         kcalFat.text = "(${food.calcCal(food.fat, 9).roundToInt()} fat"
         kcalCarb.text = "${food.calcCal(food.carb, 4).roundToInt()} carbs"
         kcalProtein.text = "${food.calcCal(food.protein, 4).roundToInt()} protein)"
-        kcalTotal.text = "${food.calcTotalCal(food.fat, food.carb, food.protein)} kcal total"
-        pctCarbs.text = "${food.pctCarbs(food.fat, food.carb, food.protein).roundToInt()} % from carbs"
+        kcalTotal.text = "${food.calcTotalCal()} kcal total"
+        pctCarbs.text = "${food.pctCarbs().roundToInt()} % from carbs"
     }
 }
 
@@ -52,10 +50,10 @@ class Food (fatW: EditText, carbW: EditText, proteinW: EditText) {
     fun calcCal(grams: Double, multiplier: Int): Double {
         return multiplier * grams
     }
-    fun calcTotalCal(fat: Double, carb: Double, protein: Double): Double {
+    fun calcTotalCal(): Double {
         return fat * 9 + (carb + protein) * 4
     }
-    fun pctCarbs(fat: Double, carb: Double, protein: Double): Double {
+    fun pctCarbs(): Double {
         val totalEnergy = fat * 9 + (carb + protein) * 4
         return carb * 4 / totalEnergy * 100
     }
