@@ -21,20 +21,28 @@ class MainActivity : AppCompatActivity() {
 
         // Start calculations when button is pressed
         sentSubmission.setOnClickListener {
-            calcMacros(fatW, R.id.kcalFat, 9)
+            calcMacros(fatW, carbW, proteinW)
+            /*
             calcMacros(carbW, R.id.kcalCarb, 4)
             calcMacros(proteinW, R.id.kcalProtein, 4)
+            */
         }
     }
 
     /* Calculate macros */
-    private fun calcMacros(fatW: EditText, targetView: Int, multiplier: Int) {
+    private fun calcMacros(fatW: EditText, carbW: EditText, proteinW: EditText) {
         // Create a food item
         val food = Food()
 
         // Return energy information
-        val kcal: TextView = findViewById(targetView)
-        kcal.text = "${food.calcCal(fatW, multiplier).roundToInt()} kcal"
+        val kcalFat: TextView = findViewById(R.id.kcalFat)
+        val kcalCarb: TextView = findViewById(R.id.kcalCarb)
+        val kcalProtein: TextView = findViewById(R.id.kcalProtein)
+        val kcalTotal: TextView = findViewById(R.id.kcalTotal)
+        kcalFat.text = "${food.calcCal(fatW, 9).roundToInt()} kcal fat"
+        kcalCarb.text = "${food.calcCal(carbW, 4).roundToInt()} kcal carbs"
+        kcalProtein.text = "${food.calcCal(proteinW, 4).roundToInt()} kcal protein"
+        kcalTotal.text = "${food.calcTotalCal(fatW, carbW, proteinW)} kcal total"
     }
 }
 
@@ -44,4 +52,19 @@ class Food() {
         val numGrams = grams.text.toString().toDouble()
         return multiplier * numGrams
     }
+    fun calcTotalCal(fatG: EditText, carbG: EditText, proteinG: EditText): Double {
+        val fat = fatG.text.toString().toDouble()
+        val carb = carbG.text.toString().toDouble()
+        val protein = proteinG.text.toString().toDouble()
+        return fat * 9 + (carb + protein) * 4
+    }
+    /*
+    fun pctCarbs(fatG: EditText, carbG: EditText, proteinG: EditText): Double {
+        val fat = fatG.text.toString().toDouble()
+        val carb = carbG.text.toString().toDouble()
+        val protein = proteinG.text.toString().toDouble()
+        val totalEnergy = fat * 9 + (carb + protein) * 4
+        return carb * 4 / totalEnergy
+    }
+     */
 }
