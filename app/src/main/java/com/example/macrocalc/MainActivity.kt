@@ -28,16 +28,21 @@ class MainActivity : AppCompatActivity() {
     /* Calculate macros */
     private fun calcMacros(food: Food) {
         // Return energy information
-        val kcalFat: TextView = findViewById(R.id.kcalFat)
-        val kcalCarb: TextView = findViewById(R.id.kcalCarb)
-        val kcalProtein: TextView = findViewById(R.id.kcalProtein)
-        val kcalTotal: TextView = findViewById(R.id.kcalTotal)
-        val pctCarbs: TextView = findViewById(R.id.pctCarbs)
-        kcalFat.text = "(${food.calcCal(food.fat, 9).roundToInt()} fat"
-        kcalCarb.text = "${food.calcCal(food.carb, 4).roundToInt()} carbs"
-        kcalProtein.text = "${food.calcCal(food.protein, 4).roundToInt()} protein)"
-        kcalTotal.text = "${food.calcTotalCal()} kcal total"
-        pctCarbs.text = "${food.pctCarbs().roundToInt()} % from carbs"
+        val kcalFatView: TextView = findViewById(R.id.kcalFat)
+        val kcalCarbView: TextView = findViewById(R.id.kcalCarb)
+        val kcalProteinView: TextView = findViewById(R.id.kcalProtein)
+        val kcalTotalView: TextView = findViewById(R.id.kcalTotal)
+        val pctCarbsView: TextView = findViewById(R.id.pctCarbs)
+        val kcalFat = food.calcCal(food.fat, 9)
+        val kcalCarb = food.calcCal(food.carb, 4)
+        val kcalProtein = food.calcCal(food.protein, 4)
+        val kcalTotal = kcalFat + kcalCarb + kcalProtein
+        val pctCarb = kcalCarb / kcalTotal * 100
+        kcalFatView.text = "($kcalFat fat"
+        kcalCarbView.text = "$kcalCarb carbs"
+        kcalProteinView.text = "$kcalProtein protein)"
+        kcalTotalView.text = "$kcalTotal kcal total"
+        pctCarbsView.text = "${pctCarb.roundToInt()} % from carbs"
     }
 }
 
@@ -49,12 +54,5 @@ class Food (fatW: EditText, carbW: EditText, proteinW: EditText) {
 
     fun calcCal(grams: Double, multiplier: Int): Double {
         return multiplier * grams
-    }
-    fun calcTotalCal(): Double {
-        return fat * 9 + (carb + protein) * 4
-    }
-    fun pctCarbs(): Double {
-        val totalEnergy = fat * 9 + (carb + protein) * 4
-        return carb * 4 / totalEnergy * 100
     }
 }
