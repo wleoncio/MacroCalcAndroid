@@ -59,9 +59,20 @@
         tools:layout_editor_absoluteX="157dp"
         tools:layout_editor_absoluteY="374dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/clearButton"
+        app:layout_constraintTop_toBottomOf="@+id/proteinWeight"
+        app:layout_constraintBottom_toTopOf="@id/kcalTotal" />
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        app:layout_constraintTop_toBottomOf="@+id/proteinWeight"
+        app:layout_constraintBottom_toTopOf="@id/kcalTotal"
+        app:layout_constraintStart_toEndOf="@id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fatWeight"
-        app:layout_constraintBottom_toBottomOf="parent" />
+     />
 
     <TextView
         android:id="@+id/kcalTotal"
