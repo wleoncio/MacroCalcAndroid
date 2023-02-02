@@ -16,10 +16,40 @@
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintBottom_toTopOf="@+id/carbWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/carbWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="0"
+        android:ems="10"
+        android:hint="@string/carb_weight_in_grams"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/proteinWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fatWeight" />
+
+    <EditText
+        android:id="@+id/proteinWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="0"
+        android:ems="10"
+        android:hint="@string/protein_weight_in_grams"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/carbWeight" />
 
     <Button
         android:id="@+id/submitButton"
@@ -39,10 +69,46 @@
         android:layout_height="wrap_content"
         android:text=""
         tools:text="0"
-        android:textSize="28sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submitButton"
+        app:layout_constraintBottom_toTopOf="@+id/kcalCarb" />
+
+    <TextView
+        android:id="@+id/kcalCarb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        tools:text="0"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kcalFat"
+        app:layout_constraintBottom_toTopOf="@id/kcalProtein" />
+
+    <TextView
+        android:id="@+id/kcalProtein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        tools:text="0"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kcalCarb"
+        app:layout_constraintBottom_toBottomOf="@id/kcalTotal" />
+
+    <TextView
+        android:id="@+id/kcalTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        tools:text="0"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kcalProtein"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,28 +15,33 @@ class MainActivity : AppCompatActivity() {
         // Assign references to relevant UI objects
         val sentSubmission: Button = findViewById(R.id.submitButton)
         val fatW: EditText = findViewById(R.id.fatWeight)
+        val carbW: EditText = findViewById(R.id.carbWeight)
+        val proteinW: EditText = findViewById(R.id.proteinWeight)
+        val totalKcal: TextView = findViewById(R.id.kcalTotal)
 
         // Start calculations when button is pressed
         sentSubmission.setOnClickListener {
-            calcMacros(fatW, R.id.kcalFat)
+            calcMacros(fatW, R.id.kcalFat, 9)
+            calcMacros(carbW, R.id.kcalCarb, 4)
+            calcMacros(proteinW, R.id.kcalProtein, 4)
         }
     }
 
     /* Calculate macros */
-    private fun calcMacros(fatW: EditText, targetView: Int) {
+    private fun calcMacros(fatW: EditText, targetView: Int, multiplier: Int) {
         // Create a food item
         val food = Food()
 
         // Return energy information
         val kcal: TextView = findViewById(targetView)
-        kcal.text = "${food.calcCal(fatW).roundToInt()} kcal from fat"
+        kcal.text = "${food.calcCal(fatW, multiplier).roundToInt()} kcal"
     }
 }
 
 /* Food item with macronutrient information */
 class Food() {
-    fun calcCal(grams: EditText): Double {
+    fun calcCal(grams: EditText, multiplier: Int): Double {
         val numGrams = grams.text.toString().toDouble()
-        return 9 * numGrams
+        return multiplier * numGrams
     }
 }
