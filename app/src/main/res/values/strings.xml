@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Macro Calc</string>
     <string name="submit">Submit</string>
+    <string name="fat_weight_in_grams">Fat weight, in grams</string>
 </resources>

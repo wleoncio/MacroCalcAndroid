@@ -20,14 +20,16 @@
         android:id="@+id/fatWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints="0"
         android:ems="10"
+        android:hint="@string/fat_weight_in_grams"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        android:autofillHints="0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/submitButton"
