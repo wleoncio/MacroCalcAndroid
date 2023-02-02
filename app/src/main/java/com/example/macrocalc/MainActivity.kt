@@ -27,20 +27,20 @@ class MainActivity : AppCompatActivity() {
 
     /* Calculate macros */
     private fun calcMacros(food: Food) {
-        // Return energy information
-        val kcalFatView: TextView = findViewById(R.id.kcalFat)
-        val kcalCarbView: TextView = findViewById(R.id.kcalCarb)
-        val kcalProteinView: TextView = findViewById(R.id.kcalProtein)
+        // Creating references for the views
+        val kcalMacrosView: TextView = findViewById(R.id.kcalMacros)
         val kcalTotalView: TextView = findViewById(R.id.kcalTotal)
         val pctCarbsView: TextView = findViewById(R.id.pctCarbs)
+
+        // Creating internal variables
         val kcalFat = food.calcCal(food.fat, 9)
         val kcalCarb = food.calcCal(food.carb, 4)
         val kcalProtein = food.calcCal(food.protein, 4)
         val kcalTotal = kcalFat + kcalCarb + kcalProtein
         val pctCarb = kcalCarb / kcalTotal * 100
-        kcalFatView.text = "($kcalFat fat"
-        kcalCarbView.text = "$kcalCarb carbs"
-        kcalProteinView.text = "$kcalProtein protein)"
+
+        // Return energy information
+        kcalMacrosView.text = "($kcalFat fat, $kcalCarb carbs, $kcalProtein protein)"
         kcalTotalView.text = "$kcalTotal kcal total"
         pctCarbsView.text = "${pctCarb.roundToInt()} % from carbs"
     }
