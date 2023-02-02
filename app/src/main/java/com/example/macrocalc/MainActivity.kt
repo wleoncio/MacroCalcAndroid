@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         // Assign references to relevant UI objects
         val sentSubmission: Button = findViewById(R.id.submitButton)
+        val clearValues: Button = findViewById(R.id.clearButton)
         val fatW: EditText = findViewById(R.id.fatWeight)
         val carbW: EditText = findViewById(R.id.carbWeight)
         val proteinW: EditText = findViewById(R.id.proteinWeight)
@@ -22,6 +23,13 @@ class MainActivity : AppCompatActivity() {
         sentSubmission.setOnClickListener {
             val food = Food(fatW, carbW, proteinW)
             calcMacros(food)
+        }
+
+        // Clear values when button is pressed
+        clearValues.setOnClickListener {
+            fatW.setText("")
+            carbW.setText("")
+            proteinW.setText("")
         }
     }
 

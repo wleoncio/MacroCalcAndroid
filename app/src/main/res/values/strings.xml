@@ -4,4 +4,5 @@
     <string name="fat_weight_in_grams">Fat weight (g)</string>
     <string name="carb_weight_in_grams">Carb weight (g)</string>
     <string name="protein_weight_in_grams">Protein weight (g)</string>
+    <string name="clear">Clear</string>
 </resources>
