@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
         val kcalProtein: TextView = findViewById(R.id.kcalProtein)
         val kcalTotal: TextView = findViewById(R.id.kcalTotal)
         val pctCarbs: TextView = findViewById(R.id.pctCarbs)
-        kcalFat.text = "${food.calcCal(fatW, 9).roundToInt()} kcal fat"
-        kcalCarb.text = "${food.calcCal(carbW, 4).roundToInt()} kcal carbs"
-        kcalProtein.text = "${food.calcCal(proteinW, 4).roundToInt()} kcal protein"
+        kcalFat.text = "(${food.calcCal(fatW, 9).roundToInt()} fat"
+        kcalCarb.text = "${food.calcCal(carbW, 4).roundToInt()} carbs"
+        kcalProtein.text = "${food.calcCal(proteinW, 4).roundToInt()} protein)"
         kcalTotal.text = "${food.calcTotalCal(fatW, carbW, proteinW)} kcal total"
         pctCarbs.text = "${food.pctCarbs(fatW, carbW, proteinW).roundToInt()} % from carbs"
     }

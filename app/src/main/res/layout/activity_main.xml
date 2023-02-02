@@ -68,55 +68,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        tools:text="0"
+        tools:text="0 fat"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/kcalTotal"
+        app:layout_constraintEnd_toStartOf="@id/kcalCarb"
         app:layout_constraintTop_toBottomOf="@+id/submitButton"
-        app:layout_constraintBottom_toTopOf="@+id/kcalCarb" />
+        app:layout_constraintBottom_toBottomOf="@id/pctCarbs" />
 
     <TextView
         android:id="@+id/kcalCarb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        tools:text="0"
+        tools:text="0 carbs"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kcalFat"
-        app:layout_constraintBottom_toTopOf="@id/kcalProtein" />
+        app:layout_constraintStart_toEndOf="@id/kcalFat"
+        app:layout_constraintEnd_toStartOf="@id/kcalProtein"
+        app:layout_constraintTop_toBottomOf="@+id/submitButton"
+        app:layout_constraintBottom_toBottomOf="@id/pctCarbs" />
 
     <TextView
         android:id="@+id/kcalProtein"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        tools:text="0"
+        tools:text="0 protein"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/kcalCarb"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kcalCarb"
-        app:layout_constraintBottom_toBottomOf="@id/kcalTotal" />
+        app:layout_constraintTop_toBottomOf="@+id/submitButton"
+        app:layout_constraintBottom_toBottomOf="@id/pctCarbs" />
 
     <TextView
         android:id="@+id/kcalTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        tools:text="0"
-        android:textSize="28sp"
+        tools:text="0 total kcal"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kcalProtein"
-        app:layout_constraintBottom_toTopOf="@id/pctCarbs" />
+        app:layout_constraintEnd_toStartOf="@id/kcalFat"
+        app:layout_constraintTop_toBottomOf="@+id/submitButton"
+        app:layout_constraintBottom_toBottomOf="@id/pctCarbs" />
 
     <TextView
         android:id="@+id/pctCarbs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        tools:text="0"
+        tools:text="0 % carbs"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
